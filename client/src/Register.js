@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register(){
@@ -8,10 +8,15 @@ function Register(){
     const [password, setPassword]=useState();
     const [firstName, setFirstName]=useState();
     const [lastName, setLastName]=useState();
+    const navigate=useNavigate();
 
     const handleSubmit=(e)=>{
-        e.prevenDefault('', {username, email, password, firstName, lastName})
-        .then(response=>console.log(response))
+        e.preventDefault();
+        axios.post('http://localhost:3001/user/register', {username, email, password, firstName, lastName})
+        .then(response=>{
+            console.log("Server response:", response.data);
+            navigate("/login");
+        })
         .catch(error=>console.log(error));
     }
 
