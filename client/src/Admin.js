@@ -44,7 +44,7 @@ function Admin(){
                     <p>{user._id}</p>
                     <p>{user.username}</p>
                     <p>{user.email}</p>
-                    <button>UPDATE</button>
+                    <Link to={`/update-user/${user._id}`} className='btn btn-primary w-10'>UPDATE</Link>
                     <button>DELETE</button>
                 </div>
             ))}

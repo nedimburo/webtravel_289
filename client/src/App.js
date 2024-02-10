@@ -6,6 +6,7 @@ import Home from './Home';
 import Admin from './Admin';
 import LogoutButton from './LogoutButton';
 import CreateUser from './CreateUser';
+import UpdateUser from './UpdateUser';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/home' element={<Home />}></Route>
           <Route path='/admin' element={<Admin />}></Route>
           <Route path='/create-user' element={<CreateUser />}></Route>
+          <Route path='/update-user/:userId' element={<UpdateUser />}></Route>
         </Routes>
       </BrowserRouter>
   );
