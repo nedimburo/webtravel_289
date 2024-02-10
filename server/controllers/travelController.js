@@ -37,8 +37,22 @@ const updateTravel=async (req, res)=>{
         return res.status(201).json({ message: 'Travel updated successfully', travel: travel });
     }catch (error) {
         console.error('Error updating travel:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
-module.exports={ createTravel, getAllTravels, updateTravel };
+const deleteTravel=async (req, res)=>{
+    const { travelId } = req.params;
+    try{
+        const deletedTravel = await Travel.findByIdAndDelete(travelId);
+        if (!deletedTravel) {
+        return res.status(404).json({ message: "Travel not found" });
+        }
+        return res.status(200).json({ message: "Travel deleted successfully", deletedTravel });
+    }catch (error) {
+        console.error('Error deleting travel:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports={ createTravel, getAllTravels, updateTravel, deleteTravel };

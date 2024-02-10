@@ -45,6 +45,18 @@ function Admin(){
         }
     }
 
+    const handleTravelDelete=async(id)=>{
+        axios.delete(`http://localhost:3001/travel/delete-travel/${id}`)
+        .then(response => {
+            console.log("Server response:", response.data);
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error.response.data.message);
+        });
+    }
+
     if (!userInfo){
         return <div>Loading Loggedin User Information...</div>
     }
@@ -88,6 +100,7 @@ function Admin(){
                         <p>{travel.category}</p>
                         <button className='btn btn-primary w-10'>DETAILS</button>
                         <Link to={`/update-travel/${travel._id}`} className='btn btn-primary w-10'>UPDATE</Link>
+                        <button className="btn btn-danger" onClick={e=>handleTravelDelete(travel._id)}>DELETE</button>
                     </div>
                 ))
             )}
