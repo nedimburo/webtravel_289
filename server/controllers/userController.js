@@ -38,7 +38,24 @@ const loginUser=async (req, res)=>{
         if (!passwordMatch) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-        return res.status(200).json({ message: 'Login successful' });
+        req.session.user = {
+            userId: user._id,
+            username: user.username,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role,
+            status: user.status
+        };
+        if (user.status==="DEACTIVATED"){
+            return res.status(200).json({ message: 'Your account is deactivated and you can\'t login.', redirect:"LOGIN" });
+        }else if (user.role==="USER"){
+            return res.status(200).json({ message: 'Login successful', redirect:"HOME" });
+        }else if (user.role==="ADMIN"){
+            return res.status(200).json({ message: 'Login successful', redirect:"ADMIN" });
+        }else{
+            return res.status(200).json({ message: 'Unknown role', redirect:"LOGIN" });
+        }
     }catch(error){
         console.error('Error during login:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -46,4 +63,12 @@ const loginUser=async (req, res)=>{
     
 }
 
-module.exports={registerUser, loginUser};
+const getLoggedInUser=async(req, res)=>{
+    if (req.session.user) {
+        return res.json(req.session.user);
+    } else {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+}
+
+module.exports={registerUser, loginUser, getLoggedInUser};

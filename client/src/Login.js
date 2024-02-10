@@ -13,7 +13,15 @@ function Login(){
         .then(response=>{
             console.log("Server response:", response);
             if (response.status===200){
-                navigate("/home");
+                if (response.data.redirect==="LOGIN"){
+                    alert(response.data.message);
+                }else if (response.data.redirect==="HOME"){
+                    navigate("/home");
+                }else if (response.data.redirect==="ADMIN"){
+                    navigate("/admin");
+                }else{
+                    navigate("/login");
+                }
             }
         })
         .catch(error=>{
