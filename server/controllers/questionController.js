@@ -15,7 +15,7 @@ const createQuestion = async (req, res)=>{
 const getTravelQuestions = async (req, res)=>{
     const travelId = req.params.travelId;
     try {
-        const questions = await Question.find({ travelId }).populate("userId");
+        const questions = await Question.find({ travelId }).populate("userId", "username");
         return res.status(200).json({ questions });
       } catch (error) {
         console.error('Error getting questions:', error);
