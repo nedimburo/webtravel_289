@@ -21,4 +21,24 @@ const getAllTravels=async (req, res)=>{
     }
 }
 
-module.exports={ createTravel, getAllTravels };
+const updateTravel=async (req, res)=>{
+    const { travelId } = req.params;
+    const { title, description, category, price } = req.body;
+    try{
+        const travel=await Travel.findById(travelId);
+        if (!travel){
+            return res.status(404).json({ message: 'Travel not found' });
+        }
+        travel.title = title;
+        travel.description = description;
+        travel.category = category;
+        travel.price = price;
+        await travel.save();
+        return res.status(201).json({ message: 'Travel updated successfully', travel: travel });
+    }catch (error) {
+        console.error('Error updating travel:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports={ createTravel, getAllTravels, updateTravel };

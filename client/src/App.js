@@ -9,6 +9,7 @@ import CreateUser from './CreateUser';
 import UpdateUser from './UpdateUser';
 import CreateTravel from './CreateTravel';
 import GuestHome from './GuestHome';
+import UpdateTravel from './UpdateTravel';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/create-user' element={<CreateUser />}></Route>
           <Route path='/update-user/:userId' element={<UpdateUser />}></Route>
           <Route path='/create-travel' element={<CreateTravel />}></Route>
+          <Route path='/update-travel/:travelId' element={<UpdateTravel />}></Route>
         </Routes>
       </BrowserRouter>
   );

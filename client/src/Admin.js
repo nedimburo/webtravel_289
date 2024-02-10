@@ -6,6 +6,7 @@ import axios from "axios";
 function Admin(){
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem("user")));
     const [users, setUsers] = useState([]);
+    const [travels, setTravels] = useState(null);
 
     useEffect(() => {
         setUserInfo(JSON.parse(localStorage.getItem("user")));
@@ -22,6 +23,12 @@ function Admin(){
         };
 
         fetchUsers();
+    }, []);
+
+    useEffect(()=>{
+        axios.get('http://localhost:3001/travel/get-travels')
+        .then(response=>setTravels(response.data))
+        .catch(error=>console.error("Error fetching travel informations", error));
     }, []);
 
     const handleStatus=async(id, type)=>{
@@ -42,6 +49,10 @@ function Admin(){
         return <div>Loading Loggedin User Information...</div>
     }
 
+    if (!travels){
+        return <div>Loading Travels...</div>
+    }
+
     if (!users){
         return <div>Loading Users...</div>
     }
@@ -54,8 +65,8 @@ function Admin(){
             <Link to={'/create-user'} className="btn btn-success w-10">Create New User</Link>
             <Link to={'/create-travel'} className="btn btn-success w-10">Create New Travel</Link>
             <h2>Registered Users:</h2>
-            {users.map(user=>(
-                <div>
+            {users.map((user, index)=>(
+                <div key={index}>
                     <p>{user._id}</p>
                     <p>{user.username}</p>
                     <p>{user.email}</p>
@@ -67,6 +78,19 @@ function Admin(){
                     )}
                 </div>
             ))}
+            <h2>Travel Offers:</h2>
+            {travels.length === 0 ? (
+                <p>No travels have been created.</p>
+            ) : (
+                travels.map((travel, index) => (
+                    <div key={index}>
+                        <p>{travel.title}</p>
+                        <p>{travel.category}</p>
+                        <button className='btn btn-primary w-10'>DETAILS</button>
+                        <Link to={`/update-travel/${travel._id}`} className='btn btn-primary w-10'>UPDATE</Link>
+                    </div>
+                ))
+            )}
         </div>
     )
 }
