@@ -11,10 +11,15 @@ function Login(){
         e.preventDefault();
         axios.post('http://localhost:3001/user/login', {email, password})
         .then(response=>{
-            console.log("Server response:", response.data);
-            navigate("/home");
+            console.log("Server response:", response);
+            if (response.status===200){
+                navigate("/home");
+            }
         })
-        .catch(error=>console.log(error));
+        .catch(error=>{
+            console.log(error);
+            alert(error.response.data.message);
+        });
     }
 
     return(

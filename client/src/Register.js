@@ -15,9 +15,15 @@ function Register(){
         axios.post('http://localhost:3001/user/register', {username, email, password, firstName, lastName})
         .then(response=>{
             console.log("Server response:", response.data);
-            navigate("/login");
+            if (response.status===201){
+                alert(response.data.message);
+                navigate("/login");
+            }
         })
-        .catch(error=>console.log(error));
+        .catch(error=>{
+            console.log(error);
+            alert(error.response.data.message);
+        });
     }
 
     return(
