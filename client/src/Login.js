@@ -13,6 +13,7 @@ function Login(){
         .then(response=>{
             console.log("Server response:", response);
             if (response.status===200){
+                localStorage.setItem("user", JSON.stringify(response.data.user));
                 if (response.data.redirect==="LOGIN"){
                     alert(response.data.message);
                 }else if (response.data.redirect==="HOME"){

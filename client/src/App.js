@@ -4,6 +4,7 @@ import Register from './Register';
 import Login from './Login';
 import Home from './Home';
 import Admin from './Admin';
+import LogoutButton from './LogoutButton';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path='/register' element={<Register />}></Route>
           <Route path='/login' element={<Login />}></Route>
+          <Route path='/logout' element={<LogoutButton />}></Route>
           <Route path='/home' element={<Home />}></Route>
           <Route path='/admin' element={<Admin />}></Route>
         </Routes>
