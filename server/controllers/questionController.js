@@ -23,4 +23,18 @@ const getTravelQuestions = async (req, res)=>{
       }
 }
 
-module.exports={ createQuestion, getTravelQuestions };
+const deleteQuestion = async (req, res)=>{
+    const questionId = req.params.questionId;
+    try{
+        const deletedQuestion = await Question.findByIdAndDelete(questionId);
+        if (!deletedQuestion) {
+            return res.status(404).json({ message: "Question not found" });
+        }
+        return res.status(200).json({ message: "Question deleted successfully", deletedQuestion });
+    }catch (error) {
+        console.error('Error deleting question:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports={ createQuestion, getTravelQuestions, deleteQuestion };

@@ -51,6 +51,18 @@ function SelectedTravel(){
         });
     };
 
+    const handleDeleteQuestion=async (id)=>{
+        axios.delete('http://localhost:3001/question/delete-question/'+id)
+        .then(response => {
+            console.log("Server response:", response.data);
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error.response.data.message);
+        });
+    }
+
     if (!selectedTravel){
         return <div>Loading Selected Travel...</div>
     }
@@ -79,6 +91,11 @@ function SelectedTravel(){
                     <div key={index}>
                     <p>{question.content}</p>
                     <p>Asked by: {question.userId.username}</p>
+                    {userInfo && userInfo.role === "ADMIN" && (
+                        <button className="btn btn-danger" onClick={e => handleDeleteQuestion(question._id)}>
+                            DELETE
+                        </button>
+                    )}
                     </div>
                 ))
             )}
