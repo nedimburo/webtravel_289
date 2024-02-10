@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LogoutButton from "./LogoutButton";
+import { Link } from 'react-router-dom';
 
 function Admin(){
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem("user")));
@@ -17,6 +18,7 @@ function Admin(){
             <h1>Admin Page</h1>
             <p>Admin: {userInfo.username}</p>
             <LogoutButton />
+            <Link to={'/create-user'} className="btn btn-success w-10">Create New User</Link>
         </div>
     )
 }

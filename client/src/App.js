@@ -5,6 +5,7 @@ import Login from './Login';
 import Home from './Home';
 import Admin from './Admin';
 import LogoutButton from './LogoutButton';
+import CreateUser from './CreateUser';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/logout' element={<LogoutButton />}></Route>
           <Route path='/home' element={<Home />}></Route>
           <Route path='/admin' element={<Admin />}></Route>
+          <Route path='/create-user' element={<CreateUser />}></Route>
         </Routes>
       </BrowserRouter>
   );
