@@ -10,6 +10,7 @@ import UpdateUser from './UpdateUser';
 import CreateTravel from './CreateTravel';
 import GuestHome from './GuestHome';
 import UpdateTravel from './UpdateTravel';
+import SelectedTravel from './SelectedTravel';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/update-user/:userId' element={<UpdateUser />}></Route>
           <Route path='/create-travel' element={<CreateTravel />}></Route>
           <Route path='/update-travel/:travelId' element={<UpdateTravel />}></Route>
+          <Route path='/selected-travel/:travelId' element={<SelectedTravel />}></Route>
         </Routes>
       </BrowserRouter>
   );

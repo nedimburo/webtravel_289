@@ -28,7 +28,7 @@ function GuestHome(){
                     <div key={index}>
                         <p>{travel.title}</p>
                         <p>{travel.category}</p>
-                        <button className='btn btn-primary w-10'>DETAILS</button>
+                        <Link to={`/selected-travel/${travel._id}`} className='btn btn-primary w-10'>DETAILS</Link>
                     </div>
                 ))
             )}

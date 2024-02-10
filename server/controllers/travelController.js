@@ -55,4 +55,18 @@ const deleteTravel=async (req, res)=>{
     }
 }
 
-module.exports={ createTravel, getAllTravels, updateTravel, deleteTravel };
+const getSelectedTravel=async (req, res)=>{
+    const { travelId } = req.params;
+    try{
+        const travel=await Travel.findById(travelId);
+        if (!travel){
+            return res.status(404).json({ message: 'Travel not found' });
+        }
+        return res.status(201).json({ travel: travel });
+    }catch (error) {
+        console.error('Error getting travel:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports={ createTravel, getAllTravels, updateTravel, deleteTravel, getSelectedTravel };

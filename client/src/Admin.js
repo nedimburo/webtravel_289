@@ -98,7 +98,7 @@ function Admin(){
                     <div key={index}>
                         <p>{travel.title}</p>
                         <p>{travel.category}</p>
-                        <button className='btn btn-primary w-10'>DETAILS</button>
+                        <Link to={`/selected-travel/${travel._id}`} className='btn btn-primary w-10'>DETAILS</Link>
                         <Link to={`/update-travel/${travel._id}`} className='btn btn-primary w-10'>UPDATE</Link>
                         <button className="btn btn-danger" onClick={e=>handleTravelDelete(travel._id)}>DELETE</button>
                     </div>
