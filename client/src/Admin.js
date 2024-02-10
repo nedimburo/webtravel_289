@@ -52,6 +52,7 @@ function Admin(){
             <p>Admin: {userInfo.username}</p>
             <LogoutButton />
             <Link to={'/create-user'} className="btn btn-success w-10">Create New User</Link>
+            <Link to={'/create-travel'} className="btn btn-success w-10">Create New Travel</Link>
             <h2>Registered Users:</h2>
             {users.map(user=>(
                 <div>
