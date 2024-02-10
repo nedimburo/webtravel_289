@@ -11,4 +11,14 @@ const createTravel=async (req, res)=>{
     }
 }
 
-module.exports={ createTravel };
+const getAllTravels=async (req, res)=>{
+    try {
+        const travels = await Travel.find();
+        return res.status(200).json(travels);
+    } catch (error) {
+        console.error('Error fetching travels:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports={ createTravel, getAllTravels };

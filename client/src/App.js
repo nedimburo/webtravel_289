@@ -8,11 +8,13 @@ import LogoutButton from './LogoutButton';
 import CreateUser from './CreateUser';
 import UpdateUser from './UpdateUser';
 import CreateTravel from './CreateTravel';
+import GuestHome from './GuestHome';
 
 function App() {
   return (
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<GuestHome />}></Route>
           <Route path='/register' element={<Register />}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/logout' element={<LogoutButton />}></Route>

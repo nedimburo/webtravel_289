@@ -47,6 +47,7 @@ function Login(){
                 </div>
                 <button type="submit" className="btn btn-success w-10">Login</button>
                 <Link to={'/register'} className="btn btn-warning w-10">Create an account</Link>
+                <Link to={'/'} className="btn btn-warning w-10">Visit as Guest</Link>
             </form>
         </div>
     )
