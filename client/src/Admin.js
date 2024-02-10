@@ -24,6 +24,20 @@ function Admin(){
         fetchUsers();
     }, []);
 
+    const handleStatus=async(id, type)=>{
+        try{
+            if (type==="OFF"){
+                await axios.put("http://localhost:3001/user/deactivate-user/"+id);
+            }
+            if (type==="ON"){
+                await axios.put("http://localhost:3001/user/activate-user/"+id);
+            }
+            window.location.reload();
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     if (!userInfo){
         return <div>Loading Loggedin User Information...</div>
     }
@@ -45,7 +59,11 @@ function Admin(){
                     <p>{user.username}</p>
                     <p>{user.email}</p>
                     <Link to={`/update-user/${user._id}`} className='btn btn-primary w-10'>UPDATE</Link>
-                    <button>DELETE</button>
+                    {user.status==="ACTIVE" ? (
+                        <button className="btn btn-danger" onClick={e=>handleStatus(user._id, "OFF")}>DEACTIVATE</button>
+                        ) : (
+                        <button className="btn btn-danger" onClick={e=>handleStatus(user._id, "ON")}>ACTIVATE</button>
+                    )}
                 </div>
             ))}
         </div>
