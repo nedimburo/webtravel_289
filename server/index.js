@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const userRoutes=require('./routes/userRoutes');
 const travelRoutes=require('./routes/travelRoutes');
 const questionRoutes=require('./routes/questionRoutes');
+const applicationRoutes=require('./routes/applicationRoutes');
 
 const app=express();
 app.use(cors({
@@ -22,6 +23,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/dbtravel_289');
 app.use("/user", userRoutes);
 app.use("/travel", travelRoutes);
 app.use("/question", questionRoutes);
+app.use("/application", applicationRoutes);
 
 const db = mongoose.connection;
 
