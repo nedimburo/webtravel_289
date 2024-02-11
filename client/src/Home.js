@@ -30,6 +30,7 @@ function Home(){
             <h1>Home Page</h1>
             <p>User: {userInfo.username}</p>
             <LogoutButton />
+            <Link to={'/travel-history'} className='btn btn-success w-10'>Travel History</Link>
             <h2>Travel Offers:</h2>
             {travels.length === 0 ? (
                 <p>No travels currently available.</p>
@@ -39,6 +40,7 @@ function Home(){
                         <p>{travel.title}</p>
                         <p>{travel.category}</p>
                         <Link to={`/selected-travel/${travel._id}`} className='btn btn-primary w-10'>DETAILS</Link>
+                        <Link to={`/apply-for-travel/${travel._id}`} className='btn btn-primary w-10'>APPLY</Link>
                     </div>
                 ))
             )}

@@ -5,7 +5,7 @@ const {
     getApplications
 } = require('../controllers/applicationController');
 
-app.post('/create-application', createApplication);
-app.get('/get-user-applications', getApplications);
+router.post('/create-application', createApplication);
+router.get('/get-user-applications/:userId', getApplications);
 
 module.exports=router;

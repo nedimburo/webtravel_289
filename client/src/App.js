@@ -11,6 +11,8 @@ import CreateTravel from './CreateTravel';
 import GuestHome from './GuestHome';
 import UpdateTravel from './UpdateTravel';
 import SelectedTravel from './SelectedTravel';
+import TravelHistory from './TravelHistory';
+import ApplyForTravel from './ApplyForTravel';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path='/create-travel' element={<CreateTravel />}></Route>
           <Route path='/update-travel/:travelId' element={<UpdateTravel />}></Route>
           <Route path='/selected-travel/:travelId' element={<SelectedTravel />}></Route>
+          <Route path='/travel-history' element={<TravelHistory />}></Route>
+          <Route path='/apply-for-travel/:travelId' element={<ApplyForTravel />}></Route>
         </Routes>
       </BrowserRouter>
   );

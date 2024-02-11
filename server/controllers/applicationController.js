@@ -13,12 +13,13 @@ const createApplication = async(req, res)=>{
 }
 
 const getApplications = async(req, res)=>{
+    const { userId } = req.params;
     try {
-        const applications = await Application.find().populate({
+        const applications = await Application.find({userId}).populate({
           path: 'travelId',
           select: 'title category',
         }).populate('userId');
-        return res.status(200).json({ applications });
+        return res.status(201).json({ applications });
     } catch (error) {
         console.error('Error getting applications:', error);
         return res.status(500).json({ message: 'Internal server error' });
