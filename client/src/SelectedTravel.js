@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 function SelectedTravel(){
@@ -17,7 +17,7 @@ function SelectedTravel(){
         axios.get('http://localhost:3001/travel/get-selected-travel/'+travelId)
         .then(response=>setSelectedTravel(response.data.travel))
         .catch(error=>console.error("Error fetching travel information", error));
-    }, []);
+    }, [travelId]);
 
     useEffect(() => {
         axios.get('http://localhost:3001/question/get-travel-questions/'+travelId)
@@ -74,15 +74,24 @@ function SelectedTravel(){
     return(
         <div>
             <h1>Travel Details</h1>
+            {userInfo && userInfo.role === "ADMIN" ? (
+                <Link to={'/admin'} className="btn btn-success w-10">Return</Link>
+            ) : userInfo && userInfo.role === "USER" ? (
+                <Link to={'/home'} className="btn btn-success w-10">Return</Link>
+            ) : (
+                <Link to={'/'} className="btn btn-success w-10">Return</Link>
+            )}
             <h2>Title: {selectedTravel.title}</h2>
             <p>Description: {selectedTravel.description}</p>
             <p>Category: {selectedTravel.category}</p>
             <p>Price: {selectedTravel.price}</p>
-            <form onSubmit={handleQuestionSubmit}>
-                <label htmlFor="content">Ask a question:</label>
-                <input type="text" name="content" onChange={(e) => setContent(e.target.value)}/>
-                <button type="submit" className="btn btn-success w-10">POST</button>
-            </form>
+            {userInfo && (
+                <form onSubmit={handleQuestionSubmit}>
+                    <label htmlFor="content">Ask a question:</label>
+                    <input type="text" name="content" onChange={(e) => setContent(e.target.value)}/>
+                    <button type="submit" className="btn btn-success w-10">POST</button>
+                </form>
+            )}
             <h2>Questions:</h2>
             {questions.length === 0 ? (
                 <p>No questions for this travel.</p>
