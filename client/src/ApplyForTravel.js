@@ -40,20 +40,23 @@ function ApplyForTravel(){
     }
 
     return(
-        <div>
-            <h1>CREATE TRAVEL APPLICATION</h1>
-            <Link to={'/home'} className='btn btn-success w-10'>Return</Link>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="startDate">Start Date:</label>
-                    <input type="date" name="startDate" onChange={(e) => setStartDate(e.target.value)}/>
-                </div>
-                <div>
-                    <label htmlFor="endDate">End Date:</label>
-                    <input type="date" name="endDate" onChange={(e) => setEndDate(e.target.value)}/>
-                </div>
-                <button type="submit" className='btn btn-success w-10'>APPLY</button>
-            </form>
+        <div className='base-layout'>
+            <div className='base-container'>
+                <h2 className='text-center'>CREATE TRAVEL APPLICATION</h2>
+                <Link to={'/home'} className='btn btn-warning w-10'>Return</Link>
+                <p className='mt-2'>Choose the dates when you want to plan the travel.</p>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="startDate">Start Date:</label>
+                        <input type="date" name="startDate" onChange={(e) => setStartDate(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label htmlFor="endDate">End Date:</label>
+                        <input type="date" name="endDate" onChange={(e) => setEndDate(e.target.value)}/>
+                    </div>
+                    <button type="submit" className='btn btn-success w-10'>APPLY</button>
+                </form>
+            </div>
         </div>
     )
 }

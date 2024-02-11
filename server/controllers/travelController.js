@@ -1,5 +1,6 @@
 const Travel=require('../models/Travel');
 const Question = require('../models/Question');
+const Application = require('../models/Application');
 
 const createTravel=async (req, res)=>{
     const { title, description, category, price } = req.body;
@@ -50,6 +51,7 @@ const deleteTravel=async (req, res)=>{
         return res.status(404).json({ message: "Travel not found" });
         }
         await Question.deleteMany({ travelId });
+        await Application.deleteMany({ travelId });
         return res.status(200).json({ message: "Travel deleted successfully", deletedTravel });
     }catch (error) {
         console.error('Error deleting travel:', error);

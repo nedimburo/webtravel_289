@@ -32,23 +32,28 @@ function Login(){
     }
 
     return(
-        <div>
-            <h2>LOGIN</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder="Enter Email here..." name="email"
-                    onChange={(e)=>setEmail(e.target.value)}/>
+        <div className="base-layout">
+            <div className="base-container">
+                <h2 className="text-center">LOGIN</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" placeholder="Enter Email here..." name="email"
+                        onChange={(e)=>setEmail(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" placeholder="Enter Password here..." name="password"
+                        onChange={(e)=>setPassword(e.target.value)}/>
+                    </div>
+                    <button type="submit" className="btn btn-success w-10">Login</button>
+                </form>
+                <div className="base-additional-container">
+                    <Link to={'/register'} className="btn btn-warning w-10">Create an account</Link>
+                    <Link to={'/'} className="btn btn-warning w-10">Visit as Guest</Link>
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="Enter Password here..." name="password"
-                    onChange={(e)=>setPassword(e.target.value)}/>
-                </div>
-                <button type="submit" className="btn btn-success w-10">Login</button>
-                <Link to={'/register'} className="btn btn-warning w-10">Create an account</Link>
-                <Link to={'/'} className="btn btn-warning w-10">Visit as Guest</Link>
-            </form>
+                
+            </div>
         </div>
     )
 }
