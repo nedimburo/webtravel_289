@@ -25,22 +25,27 @@ function TravelHistory(){
     }
 
     return(
-        <div>
-            <h1>Travel History</h1>
-            <Link to={'/home'} className="btn btn-success w-10">Return</Link>
-            <h2>Below is the list of the travels you applied for:</h2>
-            {travelApplications.length === 0 ? (
-                <p>No travel applications created.</p>
-            ) : (
-                travelApplications.map((application, index) => (
-                    <div key={index}>
-                        <p>Start Date: {application.startDate}</p>
-                        <p>End Date: {application.endDate}</p>
-                        <p>Travel: {application.travelId.title}</p>
-                        <p>Category: {application.travelId.category}</p>
-                    </div>
-                ))
-            )}
+        <div className='base-layout'>
+            <div className='slim-container'>
+                <h1 className='text-center'>Travel History</h1>
+                <Link to={'/home'} className="btn btn-success w-10">Return</Link>
+                <h2>Below is the list of the travels you applied for:</h2>
+                {travelApplications.length === 0 ? (
+                    <p className='text-center warning-message'>You haven't made any travel applications.</p>
+                ) : (
+                    travelApplications.map((application, index) => (
+                        <div key={index} className='travel-history-container'>
+                            <div className='history-image-container'>
+                                <img src='./images/travelicon.png' className='scale-image' alt='Travel Icon'/>
+                            </div>
+                            <p className='small-container-text'>Start Date: {application.startDate}</p>
+                            <p className='small-container-text'>End Date: {application.endDate}</p>
+                            <p className='small-container-text'>Travel: {application.travelId.title}</p>
+                            <p className='small-container-text'>Category: {application.travelId.category}</p>
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
     )
 }
