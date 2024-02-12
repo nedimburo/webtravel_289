@@ -20,6 +20,10 @@ p{
   margin: 0;
 }
 
+.larger-font{
+  font-size: 1.4rem;
+}
+
 .scale-image{
   width: 100%;
   height: 100%;
@@ -100,6 +104,7 @@ select:focus{
   grid-template-rows: repeat(4, 40px);
   grid-template-columns: 150px 1fr;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .history-image-container{
@@ -108,3 +113,90 @@ select:focus{
   grid-row: 1 / 5;
 }
 
+.question-container{
+  background-color: white;
+  border: 2px dashed black;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  display: grid;
+  grid-template-rows: repeat(4, 40px);
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.question-image-container{
+  padding: 5px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 5;
+}
+
+.question-content{
+  grid-column: 2 / 3;
+  grid-row: 2 / 4;
+}
+
+.admin-header-buttons-container{
+  width: 60%;
+  padding: 5px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.user-admin-container{
+  background-color: white;
+  border: 2px dashed black;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  display: grid;
+  grid-template-rows: repeat(4, 40px);
+  grid-template-columns: 175px 1fr 1fr;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-admin-image-container{
+  padding: 10px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 5;
+}
+
+.user-admin-buttons-container{
+  grid-column: 2 / 4;
+  grid-row: 4 / 5;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.travel-admin-container{
+  background-color: white;
+  border: 2px dashed black;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  display: grid;
+  grid-template-rows: repeat(3, 60px);
+  grid-template-columns: 175px 1fr 1fr;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.travel-admin-image-container{
+  padding: 5px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+}
+
+.travel-admin-buttons-container{
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  grid-column: 3 / 4;
+  grid-row: 1 / 4;
+}

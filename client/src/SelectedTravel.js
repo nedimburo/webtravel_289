@@ -72,42 +72,47 @@ function SelectedTravel(){
     }
 
     return(
-        <div>
-            <h1>Travel Details</h1>
-            {userInfo && userInfo.role === "ADMIN" ? (
-                <Link to={'/admin'} className="btn btn-success w-10">Return</Link>
-            ) : userInfo && userInfo.role === "USER" ? (
-                <Link to={'/home'} className="btn btn-success w-10">Return</Link>
-            ) : (
-                <Link to={'/'} className="btn btn-success w-10">Return</Link>
-            )}
-            <h2>Title: {selectedTravel.title}</h2>
-            <p>Description: {selectedTravel.description}</p>
-            <p>Category: {selectedTravel.category}</p>
-            <p>Price: {selectedTravel.price}</p>
-            {userInfo && (
-                <form onSubmit={handleQuestionSubmit}>
-                    <label htmlFor="content">Ask a question:</label>
-                    <input type="text" name="content" onChange={(e) => setContent(e.target.value)}/>
-                    <button type="submit" className="btn btn-success w-10">POST</button>
-                </form>
-            )}
-            <h2>Questions:</h2>
-            {questions.length === 0 ? (
-                <p>No questions for this travel.</p>
-            ) : (
-                questions.map((question, index) => (
-                    <div key={index}>
-                    <p>{question.content}</p>
-                    <p>Asked by: {question.userId.username}</p>
-                    {userInfo && userInfo.role === "ADMIN" && (
-                        <button className="btn btn-danger" onClick={e => handleDeleteQuestion(question._id)}>
-                            DELETE
-                        </button>
-                    )}
-                    </div>
-                ))
-            )}
+        <div className="base-layout">
+            <div className="slim-container">
+                <h1>Travel Details</h1>
+                {userInfo && userInfo.role === "ADMIN" ? (
+                    <Link to={'/admin'} className="btn btn-success w-10">Return</Link>
+                ) : userInfo && userInfo.role === "USER" ? (
+                    <Link to={'/home'} className="btn btn-success w-10">Return</Link>
+                ) : (
+                    <Link to={'/'} className="btn btn-success w-10">Return</Link>
+                )}
+                <h2>Title: {selectedTravel.title}</h2>
+                <p>Description: {selectedTravel.description}</p>
+                <p>Category: {selectedTravel.category}</p>
+                <p>Price: {selectedTravel.price} $</p>
+                {userInfo && (
+                    <form onSubmit={handleQuestionSubmit}>
+                        <label htmlFor="content">Ask a question:</label>
+                        <input type="text" name="content" onChange={(e) => setContent(e.target.value)}/>
+                        <button type="submit" className="btn btn-success w-10 m-2">POST</button>
+                    </form>
+                )}
+                <h2>Questions:</h2>
+                {questions.length === 0 ? (
+                    <p className="warning-message">No questions for this travel.</p>
+                ) : (
+                    questions.map((question, index) => (
+                        <div key={index} className="question-container">
+                            <div className="question-image-container">
+                                <img src='/images/commenticon.png' className="scale-image" alt="Comment Icon"/>
+                            </div>
+                            <p className="small-container-text">Asked by: {question.userId.username}</p>
+                            <p className="small-container-text question-content">{question.content}</p>
+                            {userInfo && userInfo.role === "ADMIN" && (
+                                <button className="btn btn-danger" onClick={e => handleDeleteQuestion(question._id)}>
+                                    DELETE
+                                </button>
+                            )}
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
     )
 }
