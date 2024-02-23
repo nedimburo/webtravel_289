@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function UpdateTravel(){
     const {travelId}=useParams();
+    const [selectedTravel, setSelectedTravel]=useState(null);
     const [travelData, setTravelData] = useState({
         title: "",
         description: "",
         category: "Europe",
         price: 0,
     });
+
+    useEffect(()=>{
+        axios.get('http://localhost:3001/travel/get-selected-travel/'+travelId)
+        .then(response=>{
+            setSelectedTravel(response.data.travel);
+            setTravelData({
+                ...travelData,
+                title: response.data.travel.title,
+                description: response.data.travel.description,
+                price: response.data.travel.price
+            });
+        })
+        .catch(error=>console.error("Error fetching travel information", error));
+    }, [travelId]);
 
     const handleChange = (e) => {
         setTravelData({ ...travelData, [e.target.name]: e.target.value });
@@ -33,6 +48,10 @@ function UpdateTravel(){
         });
     };
 
+    if (!selectedTravel){
+        return <div>Loading Selected Travel Information...</div>
+    }
+
     return(
         <div className="base-layout">
             <div className="base-container">
@@ -42,12 +61,12 @@ function UpdateTravel(){
                     <div>
                         <label htmlFor="title">Title:</label>
                         <input type="text" placeholder="Enter new Title here..." name="title"
-                        onChange={handleChange}/>
+                        onChange={handleChange} value={travelData.title}/>
                     </div>
                     <div>
                         <label htmlFor="description">Description:</label>
                         <input type="description" placeholder="Enter new Description here..." name="description"
-                        onChange={handleChange}/>
+                        onChange={handleChange} value={travelData.description}/>
                     </div>
                     <div>
                         <label htmlFor="category">Choose travel category:</label>
@@ -66,7 +85,7 @@ function UpdateTravel(){
                     <div>
                         <label htmlFor="price">Price:</label>
                         <input type="number" step="0.01" placeholder="Enter new Price here..." name="price"
-                        onChange={handleChange}/>
+                        onChange={handleChange} value={travelData.price}/>
                     </div>
                     <button type="submit" className="btn btn-success w-10">Update Travel</button>
                 </form>
