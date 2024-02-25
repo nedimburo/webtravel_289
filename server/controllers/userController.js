@@ -118,4 +118,18 @@ const deactivateUser=async (req, res)=>{
     }
 }
 
-module.exports={registerUser, loginUser, getAllUsers, updateUser, activateUser, deactivateUser};
+const getSelectedUser=async (req, res)=>{
+    const { userId } = req.params;
+    try{
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        return res.status(201).json({ user: user });
+    }catch (error) {
+        console.error('Error getting user:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports={registerUser, loginUser, getAllUsers, updateUser, activateUser, deactivateUser, getSelectedUser};
